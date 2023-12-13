@@ -1,0 +1,17 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "functions-eds",
+  "steps": [
+    {
+      "file": "src/DotNetWorker.Grpc/FunctionMetadata/DefaultFunctionMetadataProvider.cs",
+      "description": "(Question) `functions.metadata` file is located in the output directory and has the following structure. Why the indirection of writing and reading separetly?\n\nProbably for multi-platform scenarios.\n\n```\n[\n  {\n    \"name\": \"BodyBindingHttpTrigger\",\n    \"scriptFile\": \"AspNetIntegration.dll\",\n    \"entryPoint\": \"AspNetIntegration.BodyBindingHttpTrigger.Run\",\n    \"language\": \"dotnet-isolated\",\n    \"properties\": {\n      \"IsCodeless\": false\n    },\n    \"bindings\": [\n      {\n        \"name\": \"req\",\n        \"direction\": \"In\",\n        \"type\": \"httpTrigger\",\n        \"authLevel\": \"Anonymous\",\n        \"methods\": [\n          \"post\"\n        ],\n        \"properties\": {}\n      },\n      {\n        \"name\": \"$return\",\n        \"type\": \"http\",\n        \"direction\": \"Out\"\n      }\n    ]\n  },\n  {\n    \"name\": \"SimpleHttpTrigger\",\n    \"scriptFile\": \"AspNetIntegration.dll\",\n    \"entryPoint\": \"AspNetIntegration.SimpleHttpTrigger.Run\",\n    \"language\": \"dotnet-isolated\",\n    \"properties\": {\n      \"IsCodeless\": false\n    },\n    \"bindings\": [\n      {\n        \"name\": \"req\",\n        \"direction\": \"In\",\n        \"type\": \"httpTrigger\",\n        \"authLevel\": \"Anonymous\",\n        \"methods\": [\n          \"get\"\n        ],\n        \"properties\": {}\n      },\n      {\n        \"name\": \"$return\",\n        \"type\": \"http\",\n        \"direction\": \"Out\"\n      }\n    ]\n  },\n  {\n    \"name\": \"SimpleHttpTriggerHttpData\",\n    \"scriptFile\": \"AspNetIntegration.dll\",\n    \"entryPoint\": \"AspNetIntegration.SimpleHttpTriggerHttpData.Run\",\n    \"language\": \"dotnet-isolated\",\n    \"properties\": {\n      \"IsCodeless\": false\n    },\n    \"bindings\": [\n      {\n        \"name\": \"req\",\n        \"direction\": \"In\",\n        \"type\": \"httpTrigger\",\n        \"authLevel\": \"Anonymous\",\n        \"methods\": [\n          \"get\"\n        ],\n        \"properties\": {}\n      },\n      {\n        \"name\": \"$return\",\n        \"type\": \"http\",\n        \"direction\": \"Out\"\n      }\n    ]\n  }\n]\n```",
+      "line": 28
+    },
+    {
+      "file": "src/DotNetWorker.Grpc/FunctionMetadata/DefaultFunctionMetadataProvider.cs",
+      "description": "Can this be replaced with `RouteHandlerServices.Map` API?",
+      "line": 35
+    }
+  ],
+  "ref": "31f3a8b378dd2426764ece5a9dfa976d0085e6f5"
+}

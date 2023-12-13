@@ -1,0 +1,27 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "aspnetcore-integration",
+  "steps": [
+    {
+      "file": "samples/AspNetIntegration/Program.cs",
+      "description": "`ConfigureFunctionsWebApplication` is used to register integration related services and middlewares.",
+      "line": 11
+    },
+    {
+      "file": "extensions/Worker.Extensions.Http.AspNetCore/src/WorkerBuilderExtensions.cs",
+      "description": "`FunctionsHttpProxyingMiddleware` seems to be responsible for interfacing with the `HttpCoordinator` to map a `FunctionContext` to an `HttpContext` and process the request via endpoint routing.",
+      "line": 30
+    },
+    {
+      "file": "extensions/Worker.Extensions.Http.AspNetCore/src/WorkerBuilderExtensions.cs",
+      "description": "(Question) `AddMvc` registers the kitchen-sink of MVC services. It's likely that Azure Functions is only using a subset here but is not able to register them independently due to internal APIs. We should really be avoid `AddMvc` here.",
+      "line": 34
+    },
+    {
+      "file": "extensions/Worker.Extensions.Http.AspNetCore/src/WorkerBuilderExtensions.cs",
+      "description": "`InputConverts` are analogous to custom model bindings in MVC. In the new eventing framework, these are not likely to be supported.",
+      "line": 38
+    }
+  ],
+  "ref": "31f3a8b378dd2426764ece5a9dfa976d0085e6f5"
+}

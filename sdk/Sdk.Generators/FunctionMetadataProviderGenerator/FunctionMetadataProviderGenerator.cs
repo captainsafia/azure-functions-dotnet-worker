@@ -25,7 +25,7 @@ namespace Microsoft.Azure.Functions.Worker.Sdk.Generators
 
         public void Execute(GeneratorExecutionContext context)
         {
-            if (context.SyntaxReceiver is not FunctionMethodSyntaxReceiver receiver || receiver.CandidateMethods.Count == 0)
+            if (context.SyntaxReceiver is not FunctionMethodSyntaxReceiver functionMethodSyntaxReceiver || functionMethodSyntaxReceiver.CandidateMethods.Count == 0)
             {
                 return;
             }
@@ -42,7 +42,7 @@ namespace Microsoft.Azure.Functions.Worker.Sdk.Generators
             // attempt to parse user compilation
             var p = new Parser(context);
 
-            var entryAssemblyFunctionSymbols = GetEntryAssemblyFunctions(receiver.CandidateMethods, context);
+            var entryAssemblyFunctionSymbols = GetEntryAssemblyFunctions(functionMethodSyntaxReceiver.CandidateMethods, context);
             var dependentAssemblyFunctionSymbols = GetDependentAssemblyFunctions(context);
 
             var entryAssemblyParsingContext = new FunctionsMetadataParsingContext
@@ -119,4 +119,5 @@ namespace Microsoft.Azure.Functions.Worker.Sdk.Generators
             return visitor.FunctionMethods;
         }
     }
+
 }

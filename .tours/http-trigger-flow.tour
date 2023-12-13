@@ -1,0 +1,77 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "http-trigger-flow",
+  "steps": [
+    {
+      "file": "src/DotNetWorker.Grpc/GrpcWorker.cs",
+      "description": "`InvocationRequest` is processed by the `GrpcWorker` here with a payload like the following.\n\n```json\n{\n  \"invocationRequest\": {\n    \"invocationId\": \"bca5af68-8a9f-4795-9652-754c60b819e4\",\n    \"functionId\": \"79030673-0594-4f46-9e40-6806e408dfb2\",\n    \"inputData\": [\n      {\n        \"name\": \"req\",\n        \"data\": {\n          \"http\": {}\n        }\n      }\n    ],\n    \"triggerMetadata\": {\n      \"Query\": {\n        \"json\": \"{}\"\n      },\n      \"Headers\": {\n        \"json\": \"{\\\"Accept\\\":\\\"text/html,application/xhtml+xml,application/xml;q\\u003d0.9,*/*;q\\u003d0.8\\\",\\\"Connection\\\":\\\"keep-alive\\\",\\\"Host\\\":\\\"localhost:7071\\\",\\\"User-Agent\\\":\\\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.1 Safari/605.1.15\\\",\\\"Accept-Encoding\\\":\\\"gzip, deflate\\\",\\\"Accept-Language\\\":\\\"en-US,en;q\\u003d0.9\\\",\\\"Upgrade-Insecure-Requests\\\":\\\"1\\\",\\\"Sec-Fetch-Site\\\":\\\"none\\\",\\\"Sec-Fetch-Mode\\\":\\\"navigate\\\",\\\"Sec-Fetch-Dest\\\":\\\"document\\\"}\"\n      }\n    },\n    \"traceContext\": {\n      \"traceParent\": \"00-b8025a09114025d0c1a7e6c71ae56b34-74d006ab519dcbff-00\"\n    }\n  }\n}\n```",
+      "line": 66
+    },
+    {
+      "file": "src/DotNetWorker.Grpc/GrpcWorker.cs",
+      "description": "`InvocationRequests` are handled separately from other workflow-related messages by the `InvocationHandler`.",
+      "line": 81
+    },
+    {
+      "file": "src/DotNetWorker.Grpc/Handlers/InvocationHandler.cs",
+      "description": "`InvocationHandler` is responsible for tracking inflight invocations by their `InvocationId`. If we can't track an incoming invocation, we fail to process it.",
+      "line": 63
+    },
+    {
+      "file": "src/DotNetWorker.Grpc/Handlers/InvocationHandler.cs",
+      "description": "(Question) Create an invocation context out of the feature collection. Any reason this indirection with the collection happens?",
+      "line": 80
+    },
+    {
+      "file": "src/DotNetWorker.Grpc/Handlers/InvocationHandler.cs",
+      "description": "`DefaultInputConversionFeature` supports processing the custom input converters that users can write to derive POCOs from their complex types. Equivalent to input bindings.",
+      "line": 83
+    },
+    {
+      "file": "src/DotNetWorker.Grpc/Handlers/InvocationHandler.cs",
+      "description": "Runs the actual function with the given invocation context.",
+      "line": 88
+    },
+    {
+      "file": "src/DotNetWorker.Core/FunctionsApplication.cs",
+      "description": "Executes the functions pipeline which includes any registered middlewares.",
+      "line": 77
+    },
+    {
+      "file": "extensions/Worker.Extensions.Http.AspNetCore/src/FunctionsMiddleware/FunctionsHttpProxyingMiddleware.cs",
+      "description": "`FunctionsHttpProxyMiddleware` is called in the invocation pipeline since it's a middlewares. It only processes functions that possess and HTTP trigger.",
+      "line": 32
+    },
+    {
+      "file": "extensions/Worker.Extensions.Http.AspNetCore/src/FunctionsMiddleware/FunctionsHttpProxyingMiddleware.cs",
+      "description": "The `DefaultHttpCoordinator` will wait for the endpoint middleware to run here and set the TCS in the `ContextReference`.",
+      "line": 41
+    },
+    {
+      "file": "extensions/Worker.Extensions.Http.AspNetCore/src/FunctionsMiddleware/FunctionsHttpProxyingMiddleware.cs",
+      "description": "(Question) Sets the `HttpContext` and the `HttpRequestData` in the features of the `FunctionContext`. Can be used in user-defined middlewares to access request data? Is there a way to run these user-defined mdidlewares in the internal pipeline?",
+      "line": 43
+    },
+    {
+      "file": "extensions/Worker.Extensions.Http.AspNetCore/src/FunctionsMiddleware/FunctionsHttpProxyingMiddleware.cs",
+      "description": "(Question) Is there a reason this conversion feature gets registered here?\n\nThe `FromBodyConversionFeature` uses MVC ModelBinding APIs to derive a model state from the `HttpContext`.",
+      "line": 46
+    },
+    {
+      "file": "extensions/Worker.Extensions.Http.AspNetCore/src/FunctionsMiddleware/FunctionsHttpProxyingMiddleware.cs",
+      "description": "Calls the next middleware in the pipeline.\n\n`FunctionsHttpProxyingMiddleware` => `RoutingMiddleware` => `OutputBindingsMiddleware` =>   `FunctionExecutionMiddleware`",
+      "line": 48
+    },
+    {
+      "file": "extensions/Worker.Extensions.Http.AspNetCore/src/FunctionsMiddleware/FunctionsHttpProxyingMiddleware.cs",
+      "description": "Represents an HttpResponse derived from the `FunctionContext`.",
+      "line": 58
+    },
+    {
+      "file": "extensions/Worker.Extensions.Http.AspNetCore/src/FunctionsMiddleware/FunctionsHttpProxyingMiddleware.cs",
+      "description": "Continue running the ASP.NET Core pipeline.",
+      "line": 69
+    }
+  ],
+  "ref": "31f3a8b378dd2426764ece5a9dfa976d0085e6f5"
+}

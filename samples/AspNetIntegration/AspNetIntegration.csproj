@@ -7,8 +7,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
     
-  <ItemGroup>
+  <!-- <ItemGroup>
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="1.16.2" />
+  </ItemGroup> -->
+
+  <ItemGroup>
+    <ProjectReference Include="/Users/captainsafia/gh/azure-functions-dotnet-worker/sdk/Sdk/Sdk.csproj" />
   </ItemGroup>
   
   <ItemGroup>
