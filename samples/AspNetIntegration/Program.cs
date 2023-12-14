@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
         {
             // can still register middleware and use this extension method the same way
             // .ConfigureFunctionsWorkerDefaults() is used
+
             builder.UseWhen<RoutingMiddleware>((context)=>
             {
                 // We want to use this middleware only for http trigger invocations.

@@ -33,7 +33,7 @@ public partial class MapActionFunctionMetadataProviderGenerator : ISourceGenerat
 
         if (functionMetadataInfo.Count > 0)
         {
-            FunctionMetadataProviderGenerator.Emitter e = new FunctionMetadataProviderGenerator.Emitter();
+            Emitter e = new Emitter();
 
             string result = e.Emit(context, functionMetadataInfo, false);
 

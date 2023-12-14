@@ -78,6 +78,7 @@ namespace Microsoft.Extensions.Hosting
                     {
                         var dataSource = endpoints.ServiceProvider.GetRequiredService<FunctionsEndpointDataSource>();
                         endpoints.DataSources.Add(dataSource);
+                        endpoints.MapGet("/hello", () => "Hello world!");
                     });
                 });
             });
