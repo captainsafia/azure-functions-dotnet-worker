@@ -44,7 +44,7 @@ namespace Microsoft.Azure.Functions.Worker.Grpc.FunctionMetadata
 
             if (!hasDirection
                 || !hasType
-                || !Enum.TryParse(jsonDirection.ToString()!, out BindingInfo.Types.Direction direction))
+                || !Enum.TryParse(jsonDirection.ToString()!, ignoreCase: true, out BindingInfo.Types.Direction direction))
             {
                 throw new FormatException("Bindings must declare a direction and type.");
             }

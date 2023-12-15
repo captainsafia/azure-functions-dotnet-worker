@@ -73,10 +73,10 @@ namespace Microsoft.Azure.Functions.SdkGeneratorTests
 
             test.TestState.AnalyzerConfigFiles.Add(("/.globalconfig", config));
 
-            foreach (var item in extensionAssemblyReferences)
-            {
-                test.TestState.AdditionalReferences.Add(item);
-            }
+            // foreach (var item in extensionAssemblyReferences)
+            // {
+            //     test.TestState.AdditionalReferences.Add(item);
+            // }
 
             if (expectedDiagnosticResults != null)
             {

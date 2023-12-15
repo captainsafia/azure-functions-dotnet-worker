@@ -31,4 +31,12 @@ namespace AspNetIntegration
             return response;
         }
     }
+
+    public class NoOpTrigger
+    {
+        public IActionResult Run()
+        {
+            return new OkObjectResult("Hello world from the NoOpTrigger!");
+        }
+    }
 }

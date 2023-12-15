@@ -11,12 +11,13 @@ namespace Microsoft.Azure.Functions.Worker.Invocation
     {
         private static readonly Regex _entryPointRegex = new Regex("^(?<typename>.*)\\.(?<methodname>\\S*)$");
 
-        public MethodInfo GetMethod(string pathToAssembly, string entryPoint)
+        public MethodInfo? GetMethod(string pathToAssembly, string entryPoint)
         {
             var entryPointMatch = _entryPointRegex.Match(entryPoint);
             if (!entryPointMatch.Success)
             {
-                throw new InvalidOperationException("Invalid entry point configuration. The function entry point must be defined in the format <fulltypename>.<methodname>");
+                // throw new InvalidOperationException("Invalid entry point configuration. The function entry point must be defined in the format <fulltypename>.<methodname>");
+                return null;
             }
 
             string typeName = entryPointMatch.Groups["typename"].Value;

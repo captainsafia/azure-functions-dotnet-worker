@@ -35,7 +35,7 @@ public partial class MapActionFunctionMetadataProviderGenerator : ISourceGenerat
         {
             Emitter e = new Emitter();
 
-            string result = e.Emit(context, functionMetadataInfo, false);
+            string result = e.Emit(context, functionMetadataInfo, true);
 
             context.AddSource("MapAction" + Constants.FileNames.GeneratedFunctionMetadata, SourceText.From(result, Encoding.UTF8));
         }

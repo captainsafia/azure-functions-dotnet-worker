@@ -8,6 +8,17 @@ using Microsoft.Extensions.Hosting;
 
 #if ENABLE_MIDDLEWARE
     var host = new HostBuilder()
+        .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.Configure(b =>
+                {
+                    b.UseRouting();                  
+                    b.UseEndpoints(endpoints =>
+                    {
+                        endpoints.MapGet("/hello", () => "Hello world!");
+                    });
+                });
+            })
         .ConfigureFunctionsWebApplication(builder =>
         {
             // can still register middleware and use this extension method the same way

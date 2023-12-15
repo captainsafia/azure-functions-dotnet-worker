@@ -123,8 +123,8 @@ public partial class MapActionFunctionMetadataProviderGenerator
                             var {{functionVariableName}} = new DefaultFunctionMetadata
                             {
                                 Language = "{{Constants.Languages.DotnetIsolated}}",
-                                Name = {{function.Name}},
-                                EntryPoint = "{{function.EntryPoint}}",
+                                Name = {{function.Name.Replace("/", "")}},
+                                EntryPoint = "AspNetIntegration.NoOpTrigger.Run",
                                 RawBindings = {{functionBindingsListVarName}},
                 """);
 

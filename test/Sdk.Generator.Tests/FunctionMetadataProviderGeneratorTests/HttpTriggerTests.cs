@@ -19,24 +19,24 @@ namespace Microsoft.Azure.Functions.SdkGeneratorTests
             public HttpTriggerTests()
             {
                 // load all extensions used in tests (match extensions tested on E2E app? Or include ALL extensions?)
-                var abstractionsExtension = Assembly.LoadFrom("Microsoft.Azure.Functions.Worker.Extensions.Abstractions.dll");
-                var httpExtension = Assembly.LoadFrom("Microsoft.Azure.Functions.Worker.Extensions.Http.dll");
-                var hostingExtension = Assembly.LoadFrom("Microsoft.Extensions.Hosting.dll");
-                var diExtension = Assembly.LoadFrom("Microsoft.Extensions.DependencyInjection.dll");
-                var hostingAbExtension = Assembly.LoadFrom("Microsoft.Extensions.Hosting.Abstractions.dll");
-                var diAbExtension = Assembly.LoadFrom("Microsoft.Extensions.DependencyInjection.Abstractions.dll");
-                var aspNetCoreRouting = Assembly.LoadFrom("Microsoft.AspNetCore.Routing.dll");
-
-                _referencedExtensionAssemblies = new[]
-                {
-                    abstractionsExtension,
-                    httpExtension,
-                    hostingExtension,
-                    hostingAbExtension,
-                    diExtension,
-                    diAbExtension,
-                    aspNetCoreRouting
-                };
+                // var abstractionsExtension = Assembly.LoadFrom("Microsoft.Azure.Functions.Worker.Extensions.Abstractions.dll");
+                // var httpExtension = Assembly.LoadFrom("Microsoft.Azure.Functions.Worker.Extensions.Http.dll");
+                // // var hostingExtension = Assembly.LoadFrom("Microsoft.Extensions.Hosting.dll");
+                // // var diExtension = Assembly.LoadFrom("Microsoft.Extensions.DependencyInjection.dll");
+                // var hostingAbExtension = Assembly.LoadFrom("Microsoft.Extensions.Hosting.Abstractions.dll");
+                // var diAbExtension = Assembly.LoadFrom("Microsoft.Extensions.DependencyInjection.Abstractions.dll");
+                // var aspNetCoreRouting = Assembly.LoadFrom("Microsoft.AspNetCore.Routing.dll");
+                //
+                // _referencedExtensionAssemblies = new[]
+                // {
+                //     abstractionsExtension,
+                //     httpExtension,
+                //     // hostingExtension,
+                //     hostingAbExtension,
+                //     // diExtension,
+                //     diAbExtension,
+                //     aspNetCoreRouting
+                // };
             }
 
             [Theory]
@@ -157,7 +157,7 @@ namespace Microsoft.Azure.Functions.SdkGeneratorTests
                     {
                         public static IEndpointRouteBuilder AddEndpoints(this IEndpointRouteBuilder app)
                         {
-                            app.MapGet("/", () => "Hello World!");
+                            app.MapGet("/hello", () => "Hello World!");
                             return app;
                         }
                     }
