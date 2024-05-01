@@ -5,6 +5,7 @@ using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.Azure.Functions.OpenApi;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Extensions.Http.AspNetCore;
 using Microsoft.Azure.Functions.Worker.Extensions.Http.AspNetCore.AspNetMiddleware;
@@ -66,6 +67,8 @@ namespace Microsoft.Extensions.Hosting
             builder.ConfigureServices(services =>
             {
                 services.AddSingleton<FunctionsEndpointDataSource>();
+                services.AddOpenApi();
+                services.AddSingleton<FunctionsMetadataProvider>();
                 services.AddSingleton<ExtensionTrace>();
                 services.Configure<ForwardedHeadersOptions>(options =>
                 {

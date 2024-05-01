@@ -7,7 +7,7 @@ using AspNetIntegration;
 using Microsoft.Extensions.Hosting;
 
 #if ENABLE_MIDDLEWARE
-    var host = new HostBuilder()
+var host = new HostBuilder()
         .ConfigureFunctionsWebApplication(builder =>
         {
             // can still register middleware and use this extension method the same way

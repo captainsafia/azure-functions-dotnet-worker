@@ -2,6 +2,17 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
+			"label": "runFunctionsHost",
+			"type": "shell",
+			"dependsOn": "build (functions)",
+			"options": {
+				"cwd": "${workspaceFolder}/samples/FunctionApp/bin/Debug/net5.0"
+			},
+			"command": "func host start",
+			"isBackground": true,
+			"problemMatcher": "$func-dotnet-watch"
+		},
+		{
 			"label": "clean (functions)",
 			"command": "dotnet",
 			"args": [
@@ -10,7 +21,10 @@
 				"/consoleloggerparameters:NoSummary"
 			],
 			"type": "process",
-			"problemMatcher": "$msCompile"
+			"problemMatcher": "$msCompile",
+			"options": {
+				"cwd": "${workspaceFolder}/samples/AspNetIntegration"
+			}
 		},
 		{
 			"label": "build (functions)",
@@ -26,7 +40,10 @@
 				"kind": "build",
 				"isDefault": true
 			},
-			"problemMatcher": "$msCompile"
+			"problemMatcher": "$msCompile",
+			"options": {
+				"cwd": "${workspaceFolder}/samples/AspNetIntegration"
+			}
 		},
 		{
 			"label": "clean release (functions)",
@@ -39,7 +56,10 @@
 				"/consoleloggerparameters:NoSummary"
 			],
 			"type": "process",
-			"problemMatcher": "$msCompile"
+			"problemMatcher": "$msCompile",
+			"options": {
+				"cwd": "${workspaceFolder}/samples/AspNetIntegration"
+			}
 		},
 		{
 			"label": "publish (functions)",
@@ -53,16 +73,18 @@
 			],
 			"type": "process",
 			"dependsOn": "clean release (functions)",
-			"problemMatcher": "$msCompile"
+			"problemMatcher": "$msCompile",
+			"options": {
+				"cwd": "${workspaceFolder}/samples/AspNetIntegration"
+			}
 		},
 		{
-			"label": "runFunctionsHost",
-			"type": "shell",
+			"type": "func",
 			"dependsOn": "build (functions)",
 			"options": {
-				"cwd": "${workspaceFolder}/samples/FunctionApp/bin/Debug/net5.0"
+				"cwd": "${workspaceFolder}/samples/AspNetIntegration/bin/Debug/net9.0"
 			},
-			"command": "func host start",
+			"command": "host start",
 			"isBackground": true,
 			"problemMatcher": "$func-dotnet-watch"
 		}
